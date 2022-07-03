@@ -1,0 +1,23 @@
+.cowimg {
+	height: 200px;
+}
+
+.imgbg {
+	background: #aaa;
+}
+
+.none {
+	display: none !important;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.cow-photo {
+	max-width: 128px;
+}
+
+.photo-wrapper {
+	background-color: #b3b3b3;
+}

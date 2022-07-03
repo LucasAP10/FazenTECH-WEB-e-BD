@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <title>FarMilk</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+
+<nav id="nav-bar" class="navbar navbar-expand-sm bg-success navbar-dark sticky-top">
+  <a class="navbar-brand" href="#">FarMilk</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Ordenha</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="vet.html">Veterinária</a>
+      </li>   
+    </ul>
+  </div>
+</nav>
+
+<div id="main-div" class="container">
+
+  <div class="d-flex justify-content-between align-items-center  my-3">
+	<button type="button" class="btn btn-sm invisible">+Cadastrar animal </button>
+	<h4>Gerenciamento do Gado Leiteiro</h4>
+	<button type="button" class="btn btn-sm text-secondary" data-toggle="modal" data-target="#add-cow-modal">+Cadastrar animal </button>
+  </div>
+
+	<hr class="mb-5">
+	
+  <div class="row">
+    <div class="col-sm-4">
+		
+			<h2>Vaca</h2>  
+	<form>
+		<div>ID: <span class="cow-id-display"></span></div>
+		<div class="input-group mb-3">
+			<input type="text" class="form-control cow-id-input" placeholder="Digite a ID do animal" >
+			<div class="input-group-append pointer" onclick="searchCow();">
+				<span class="input-group-text"><i class="material-icons">search</i></span>
+			</div>
+		</div>
+	</form>
+	
+	<div id="info-cow-block" class="invisible">
+	
+	
+	
+      <div class="text-center imgbg">
+		<img src="img/vaca001.jpg" class="cowimg" />
+	  </div>
+	  
+		<table class="table table-striped text-center">
+			<thead>
+				<tr>
+					<th>Ordenha No.</th>
+					<th>Data</th>
+					<th>Qtd (litros)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>3</td>
+					<td>04/09/2020</td>
+					<td>12</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>03/09/2020</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>02/09/2020</td>
+					<td>10</td>
+				</tr>
+			</tbody>
+		</table>
+  
+		</div><!-- div id="info-cow-block" -->
+    </div>
+    <div class="col-sm-8">
+      <h2 class="text-center">ORDENHA</h2>
+	  
+	  
+	  <p id="data-de-hoje" class="text-center text-muted"></p>
+	<div class="form-group">
+	  <label for="resp">Responsável:</label>
+	  <select class="form-control" id="resp">
+		<option value="0">Selecionar</option>
+		<option value="1">João da Silva</option>
+		<option value="2">Maria Souza</option>
+		<option value="3">José Oliveira</option>
+	  </select>
+	</div>
+	  
+		<table class="table mt-5">
+			<tr class="table-success">
+				<td>Hora do início</td>
+				<td id="ordenha-start-time" class="text-right">--</td>
+			</tr>
+			<tr class="table-danger">
+				<td>Hora do término</td>
+				<td id="ordenha-end-time" class="text-right">--</td>
+			</tr>
+			<tr class="table-warning">
+				<td>Quantidade (litros)</td>
+				<td id="ordenha-qtd" class="text-right">--</td>
+			</tr>
+		</table>
+		
+      <div id="ordenha-btns-wrap" class="text-center mt-5">
+		<button type="button" class="btn btn-success mx-auto w-50 start-action-btn" disabled onclick="iniciarOrdenha();">INICIAR</button>
+		<button type="button" class="btn btn-danger w-50 none" onclick="pararOrdenha();">PARAR</button>
+	  </div>
+     
+    </div>
+  </div>
+</div><!-- div id="main-div" -->
+
+  <!-- The Modal -->
+  <div id="add-cow-modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Cadastramento de Animal</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+		
+		<div class="d-flex justify-content-center">
+			<div class="mb-2 photo-wrapper border rounded pointer" onclick="addPhoto('001');"><img class="cow-photo m-4" src="img/camera.png" /></div>
+		</div>
+		
+		  <form>
+		  
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">ID</span>
+				</div>
+				<input id="cowid" type="text" class="cadastro-id form-control" placeholder="0000">
+			</div>
+			
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Data de Nascimento</span>
+				</div>
+				<input type="date" class="cadastro-date form-control">
+			</div>
+			
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Raça</span>
+				</div>
+				<input type="text" class="cadastro-raca form-control" placeholder="Nome da raça">
+			</div>
+			
+			<div class="form-group">
+				<label for="comment">Observações:</label>
+				<textarea class="cadastro-comment form-control" rows="3" id="comment"></textarea>
+			</div>
+			
+			<label class="mr-2"><strong>Tipo:</strong></label>
+			<div class="form-check-inline">
+				<label class="form-check-label">
+					<input type="radio" class="form-check-input" name="optradio">Leiteiro
+				</label>
+			</div>
+			<div class="form-check-inline">
+				<label class="form-check-label">
+					<input type="radio" class="form-check-input" name="optradio">De corte
+				</label>
+			</div>
+
+
+		  </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="storeCow();" data-dismiss="modal">Cadastrar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div><!-- div id="add-cow-modal" -->
+  
+</body>
+</html>
